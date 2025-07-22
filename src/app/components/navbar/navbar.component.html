@@ -1,9 +1,17 @@
 <div class="navbar">
-    <h1>My take on PHP...</h1>
-    <div #logoContainer>
-        <div #logoPlaceholder id="logoPlaceholder">
-            <h1 id="logoText">?</h1>
+    <nav>
+        <ul>
+            <li><a routerLink="/">Home</a></li>
+            <li><a routerLink="/stations">Stations</a></li>
+        </ul>
+    </nav>
+    <div class="navbar-center">
+        <h1>My take on PHP...</h1>
+        <div #logoContainer (mouseover)=showImage() (mouseout)=hideImage()>
+            <div #logoPlaceholder id="logoPlaceholder">
+                <h1 id="logoText">?</h1>
+            </div>
+            <img #logo src="images/poop-emoji.png" alt="" style="display: none;">
         </div>
-        <img #logo src="images/poop-emoji.png" alt="">
     </div>
 </div>
