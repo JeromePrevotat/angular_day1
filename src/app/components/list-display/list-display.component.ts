@@ -20,10 +20,8 @@ export class ListDisplayComponent implements OnInit{
   }
 
   fetchAllStations() {
-    console.log("Fetching all stations...");
     this.stationService.getStations().subscribe((data: Station[]) => {
       this.stations = data;
-      console.log(this.stations)
     });
   }
 }

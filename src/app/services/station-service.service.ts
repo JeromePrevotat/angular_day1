@@ -12,7 +12,6 @@ export class StationServiceService {
   private http = inject(HttpClient);
 
   getStations(): Observable<Station[]> {
-    console.log("API CALLED");
     return this.http.get<Station[]>(this.apiUrl);
   }
 }
