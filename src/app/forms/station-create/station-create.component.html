@@ -1,0 +1,50 @@
+<div class="form-container">
+    <form action="">
+        <h2>Add Station</h2>
+        <div class="form-field">
+            <label for="name">Station Name: </label>
+            <input id="name" type="text" [formControl]="stationName">
+        </div>
+        <div class="form-field">
+            <label for="latitude">Latitude: </label>
+            <input id="latitude" type="number" [formControl]="latitude">
+        </div>
+        <div class="form-field">
+            <label for="longitude">Longitude: </label>
+            <input id="longitude" type="number" [formControl]="longitude">
+        </div>
+        <div class="form-field">
+            <label for="priceRate">Price Rate: </label>
+            <input id="priceRate" type="number" [formControl]="priceRate">            
+        </div>
+        <div class="form-field">
+            <label for="powerOutput">Power Output: </label>
+            <input id="powerOutput" type="number" [formControl]="powerOutput">
+        </div>
+        <div class="form-field">
+            <label for="manual">Manual: </label>
+            <input id="manual" type="text" [formControl]="manual">
+        </div>
+        <div class="form-field">
+            <label for="state">State: </label>
+            <input id="state" type="text" [formControl]="state">
+        </div>
+        <div class="checkboxes-container">
+            <div class="checkbox-container">
+                <label for="grounded">Grounded: </label>
+                <input id="grounded" type="checkbox" [formControl]="grounded">
+            </div>
+            <div class="checkbox-container">
+                <label for="wired">Wired: </label>
+                <input id="wired" type="checkbox" [formControl]="wired">
+            </div>
+        </div>
+
+        <!-- <label for="mediaList">Media List: </label>
+        <input id="mediaList" type="text" [formControl]="mediaList">
+    
+        <label for="plugTypeList">Plug Type List: </label>
+        <input id="plugTypeList" type="text" [formControl]="plugTypeList"> -->
+        <button type="submit" class="submit-btn">Create Station</button>
+    </form>
+</div>

@@ -14,8 +14,8 @@
             <p>Busy: {{ station.busy }}</p>
             <p>Wired: {{ station.wired }}</p>
             <p>Spot ID: {{ station.spot_id }}</p>
-            <p>Reservations: {{ station.reservationList.join(', ') }}</p>
-            <p>Plug Types: {{ station.plugTypeList.join(', ') }}</p>
+            <p>Reservations: {{ station.reservationList?.join(', ') }}</p>
+            <p>Plug Types: {{ station.plugTypeList?.join(', ') }}</p>
             <a [routerLink]="['']">Reserve</a>
         }
     </div>

@@ -2,15 +2,16 @@ import { Routes } from '@angular/router';
 import { ListDisplayComponent } from './components/list-display/list-display.component';
 import { HomeComponent } from './components/home/home.component';
 import { StationDetailsComponent } from './components/station-details/station-details.component';
+import { StationCreateComponent } from './forms/station-create/station-create.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'stations', component: ListDisplayComponent },
+    { path: 'stations/add', component: StationCreateComponent }, // Still call /:id why ?
     { path: 'stations/:id', component: StationDetailsComponent },
     
     /* To Implement
     Station CRUD operations
-    { path: 'add/stations', component: StationDetailsComponent },
     { path: 'edit/stations/:id', component: StationDetailsComponent },
     { path: 'delete/stations/:id', component: StationDetailsComponent },
     

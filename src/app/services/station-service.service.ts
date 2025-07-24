@@ -18,4 +18,8 @@ export class StationServiceService {
   getStation(id:number): Observable<Station> {
     return this.http.get<Station>(`${this.apiUrl}/${id}`);
   }
+
+  createStation(station:Station): Observable<Station> {
+    return this.http.post<Station>(this.apiUrl, station);
+  }
 }

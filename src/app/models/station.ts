@@ -1,7 +1,7 @@
 import { StationState } from "./station-state";
 
 export interface Station {
-    readonly id: number;
+    readonly id: number | null;
     stationName: string;
     latitude: number;
     longitude: number;
@@ -12,8 +12,8 @@ export interface Station {
     grounded: boolean;
     busy: boolean;
     wired: boolean;
-    spot_id: number;
-    reservationList: number[];
-    mediaList: number[];
-    plugTypeList: number[];
+    spot_id: number | null;
+    reservationList: number[] | null;
+    mediaList: number[] | null;
+    plugTypeList: number[] | null;
 }

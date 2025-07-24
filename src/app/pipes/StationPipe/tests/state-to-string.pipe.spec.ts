@@ -1,4 +1,4 @@
-import { StateToStringPipe } from './state-to-string.pipe';
+import { StateToStringPipe } from '../state-to-string.pipe';
 
 describe('StateToStringPipe', () => {
   it('create an instance', () => {
