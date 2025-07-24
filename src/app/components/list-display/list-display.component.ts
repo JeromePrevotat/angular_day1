@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Station } from '../../models/station';
 import { StationCardComponent } from "../station-card/station-card.component";
-import { StationState } from '../../models/station-state';
 import { StationServiceService } from '../../services/station-service.service';
 
 @Component({
@@ -20,8 +19,14 @@ export class ListDisplayComponent implements OnInit{
   }
 
   fetchAllStations() {
-    this.stationService.getStations().subscribe((data: Station[]) => {
-      this.stations = data;
+    this.stationService.getStations().subscribe({
+      next: (data: Station[]) => {
+        this.stations = data;
+        console.log("Stations fetched successfully:", this.stations);
+      },
+      error: (error) => {
+        console.error("Error fetching stations:", error);
+      }
     });
   }
 }

@@ -14,4 +14,8 @@ export class StationServiceService {
   getStations(): Observable<Station[]> {
     return this.http.get<Station[]>(this.apiUrl);
   }
+
+  getStation(id:number): Observable<Station> {
+    return this.http.get<Station>(`${this.apiUrl}/${id}`);
+  }
 }

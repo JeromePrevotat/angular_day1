@@ -1,1 +1,22 @@
-<p>station-details works!</p>
+<div class="station-container">
+    <div class="station-details">
+        @if(station){
+            <h2>{{ station.stationName }}</h2>
+            <img src="/images/station.jpeg"/>
+            <p>Location: {{ station.latitude }}, {{ station.longitude }}</p>
+            <p>Price Rate: {{ station.priceRate }}</p>
+            <p>Power Output: {{ station.powerOutput }}</p>
+    
+            <p [ngClass]="['Broken', 'Inactive', 'Under Maintenance', 'Out of Service', 'Out of Service'].includes(station.state | stateToString) ?
+                'greyedOut' : 'whiteText' ">State: {{ station.state | stateToString }}</p>
+            
+            <p>Grounded: {{ station.grounded }}</p>
+            <p>Busy: {{ station.busy }}</p>
+            <p>Wired: {{ station.wired }}</p>
+            <p>Spot ID: {{ station.spot_id }}</p>
+            <p>Reservations: {{ station.reservationList.join(', ') }}</p>
+            <p>Plug Types: {{ station.plugTypeList.join(', ') }}</p>
+            <a [routerLink]="['']">Reserve</a>
+        }
+    </div>
+</div>
