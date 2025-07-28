@@ -19,7 +19,15 @@ export class StationServiceService {
     return this.http.get<Station>(`${this.apiUrl}/${id}`);
   }
 
-  createStation(station:Station): Observable<Station> {
+  createStation(station:Partial<Station>): Observable<Station> {
     return this.http.post<Station>(this.apiUrl, station);
+  }
+
+  editStation(id: number, station: Partial<Station>): Observable<Station> {
+    return this.http.put<Station>(`${this.apiUrl}/${id}`, station);
+  }
+
+  deleteStation(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

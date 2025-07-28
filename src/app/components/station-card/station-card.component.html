@@ -17,5 +17,9 @@
         <!-- <img [src]="station.mediaList" alt="Station Media" /> -->
         <p>Plug Types: {{ station.plugTypeList?.join(', ') }}</p>
         <a [routerLink]="['/stations', station.id]">Details</a>
+        <a [routerLink]="['/stations', 'edit', station.id]">Edit</a>
+        @if(station && station.id){
+            <app-station-delete-btn [stationId]="station.id"></app-station-delete-btn>
+        }
     }
 </div>

@@ -3,17 +3,21 @@ import { ListDisplayComponent } from './components/list-display/list-display.com
 import { HomeComponent } from './components/home/home.component';
 import { StationDetailsComponent } from './components/station-details/station-details.component';
 import { StationCreateComponent } from './forms/station-create/station-create.component';
+import { StationEditComponent } from './components/edit-station/edit-station.component';
+import { RegisterFormComponent } from './forms/register-form/register-form.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'stations', component: ListDisplayComponent },
-    { path: 'stations/add', component: StationCreateComponent }, // Still call /:id why ?
+    { path: 'stations/add', component: StationCreateComponent },
+    { path: 'stations/edit/:id', component: StationEditComponent },
     { path: 'stations/:id', component: StationDetailsComponent },
+    
+    { path: 'auth/register', component: RegisterFormComponent },
+
     
     /* To Implement
     Station CRUD operations
-    { path: 'edit/stations/:id', component: StationDetailsComponent },
-    { path: 'delete/stations/:id', component: StationDetailsComponent },
     
     User CRUD operations
     { path: 'users', component: ListDisplayComponent },

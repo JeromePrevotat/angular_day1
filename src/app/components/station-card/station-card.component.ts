@@ -4,11 +4,12 @@ import { Station } from '../../models/station';
 import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { StateToStringPipe } from "../../pipes/StationPipe/state-to-string.pipe";
+import { StationDeleteBtnComponent } from "../station-delete-btn/station-delete-btn.component";
 
 @Component({
   selector: 'app-station-card',
   standalone: true,
-  imports: [NgClass, RouterLink, StateToStringPipe],
+  imports: [NgClass, RouterLink, StateToStringPipe, StationDeleteBtnComponent],
   templateUrl: './station-card.component.html',
   styleUrl: './station-card.component.css'
 })

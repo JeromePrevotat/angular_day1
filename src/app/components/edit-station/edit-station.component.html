@@ -1,6 +1,6 @@
 <div class="form-container">
-    <form [formGroup]="stationCreateForm" action="">
-        <h2>Add Station</h2>
+    <form [formGroup]="stationEditForm" action="">
+        <h2>Edit Station</h2>
         <div class="form-field">
             <label for="name">Station Name: </label>
             <input id="name" type="text" formControlName="stationName" [class.border-red-500]="isFieldInvalid('stationName')"/>
@@ -100,6 +100,9 @@
     
         <label for="plugTypeList">Plug Type List: </label>
         <input id="plugTypeList" type="text" [formControl]="plugTypeList"> -->
-        <button type="submit" class="submit-btn" (click)="submitCreateStation()">Create Station</button>
+        <div class="btn-container">
+            <button type="submit" class="submit-btn" (click)="submitEditStation()">Edit Station</button>
+            <app-station-delete-btn [stationId]="stationId"></app-station-delete-btn>
+        </div>
     </form>
 </div>
