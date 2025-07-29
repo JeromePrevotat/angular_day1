@@ -66,6 +66,7 @@ export class RegisterFormComponent {
           console.log('User created successfully:', response);
         },
         error: (error) => {
+          console.log("USER: ", newUser);
           console.error('Error creating user:', error);
         }
       });

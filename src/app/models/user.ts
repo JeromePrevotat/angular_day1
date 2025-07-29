@@ -5,6 +5,7 @@ export interface User {
     lastname: string;
     email: string;
     birthDate: Date;
+    password: string;
     inscriptionDate: Date;
     accountValid: boolean;
     roleList: number[];
