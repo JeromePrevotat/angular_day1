@@ -22,7 +22,6 @@ export class ListDisplayComponent implements OnInit{
     this.stationService.getStations().subscribe({
       next: (data: Station[]) => {
         this.stations = data;
-        console.log("Stations fetched successfully:", this.stations);
       },
       error: (error) => {
         console.error("Error fetching stations:", error);

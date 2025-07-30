@@ -5,6 +5,7 @@ import { StationDetailsComponent } from './components/station-details/station-de
 import { StationCreateComponent } from './forms/station-create/station-create.component';
 import { StationEditComponent } from './components/edit-station/edit-station.component';
 import { RegisterFormComponent } from './forms/register-form/register-form.component';
+import { LoginFormComponent } from './forms/login-form/login-form.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ export const routes: Routes = [
     { path: 'stations/:id', component: StationDetailsComponent },
     
     { path: 'auth/register', component: RegisterFormComponent },
+    { path: 'auth/login', component: LoginFormComponent },
 
     
     /* To Implement

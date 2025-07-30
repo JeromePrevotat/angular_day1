@@ -44,14 +44,14 @@ export class RegisterFormComponent {
   }
 
   getFieldError(fieldName: string): string {
-  const field = this.registerForm.get(fieldName);
-  if (field && field.errors) {
-    if (field.errors['required']) return `${fieldName} is required`;
-    if (field.errors['minlength']) {
-      return `Minimum ${field.errors['minlength'].requiredLength} characters`;
+    const field = this.registerForm.get(fieldName);
+    if (field && field.errors) {
+      if (field.errors['required']) return `${fieldName} is required`;
+      if (field.errors['minlength']) {
+        return `Minimum ${field.errors['minlength'].requiredLength} characters`;
+      }
     }
-  }
-    return '';
+      return '';
   }
 
   submitCreateUser(){

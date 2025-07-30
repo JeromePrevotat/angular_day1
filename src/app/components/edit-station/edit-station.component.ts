@@ -65,13 +65,6 @@ export class StationEditComponent implements OnInit {
           }
         });
       }
-      this.stationEditForm.valueChanges.subscribe(values => {
-        console.log('Formulaire modifié:', values);
-      });
-
-      this.stationEditForm.get('stationName')?.valueChanges.subscribe(stationName => {
-        console.log('Station Name modifié:', stationName);
-      });
     }
 
     isFieldInvalid(fieldName: string): boolean {

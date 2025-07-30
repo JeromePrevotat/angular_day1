@@ -19,6 +19,12 @@ export class UserService {
     return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
 
+  getUserByToken(token: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/me`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+  }
+
   createUser(user:Partial<User>): Observable<User> {
     return this.http.post<User>(this.apiUrl, user);
   }
