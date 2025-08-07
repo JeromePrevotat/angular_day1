@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StationDeleteBtnComponent } from './station-delete-btn.component';
+import { StationDeleteBtnComponent } from '../station-delete-btn/station-delete-btn.component';
 
 describe('StationDeleteBtnComponent', () => {
   let component: StationDeleteBtnComponent;

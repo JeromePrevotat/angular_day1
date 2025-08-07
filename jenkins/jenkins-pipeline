@@ -6,74 +6,84 @@ pipeline {
         IMAGE_TAG = 'latest'
     }
     
-    // SETUP
-    stages {
-        stage('Checkout sur la branche master') {
-            steps {
-                git branch: 'master', url: 'https://github.com/JeromePrevotat/angular_day1.git' 
-            }
-        }
+    //   SETUP
+     stages {
+         stage('Checkout sur la branche master') {
+             steps {
+                 git branch: 'master', url: 'https://github.com/JeromePrevotat/angular_day1.git' 
+             }
+         }
 
-        stage('Install nvm') {
-            steps {
-                sh 'apt update && apt install -y curl'
-                sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash'
-                sh 'bash -c "source /etc/bash.bashrc"'
-            }
-        }
+        //  stage('Install nvm') {
+        //      steps {
+        //          sh 'apt update && apt install -y curl'
+        //          sh 'curl -o- https:raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash'
+        //          sh 'bash -c "source /etc/bash.bashrc"'
+        //      }
+        //  }
         
-        stage('Activate nvm') {
-            steps {
+        //  stage('Activate nvm') {
+        //      steps {
+        //          sh '''
+        //          export NVM_DIR="$HOME/.nvm"
+        //          [ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh"  # This loads nvm
+        //          [ -s "$NVM_DIR/bash_completion" ] && \\. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+        //          '''
+        //      }
+        //  }
+
+         stage('Use nvm') {
+             steps {
                 sh '''
                 export NVM_DIR="$HOME/.nvm"
                 [ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh"  # This loads nvm
                 [ -s "$NVM_DIR/bash_completion" ] && \\. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+                nvm use 20
+                npm install -g @angular/cli
+                npm install
+                ng test
                 '''
-            }
-        }
+             }
+         }
 
-        stage('Use nvm') {
-            steps {
-                sh "bash -c 'source /root/.nvm/nvm.sh && nvm install 20' && nvm use 20"
-            }
-        }
-        
-        stage('Install Angular CLI') {
-           steps {
-        sh 'npm install -g @angular/cli'
-            }
-        }
+    //   sh "bash -c 'source /root/.nvm/nvm.sh && nvm install 20' && nvm use 20"
 
-        stage('Install dependencies') {
+         stage('Install Angular CLI') {
             steps {
-                sh 'npm install'
-            }
-        }
+         sh 'npm install -g @angular/cli'
+             }
+         }
 
-        // TESTS
-        stage('Run Tests') {
-            steps {
-                sh 'ng test'
-            }
-        }
+         stage('Install dependencies') {
+             steps {
+                 sh 'npm install'
+             }
+         }
 
-        // DEPLOYMENT
-        stage('Generate Docker Image') {
-            steps {
-                // Construire image docker
-                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -f ./jenkins/Dockerfile.jenkins ./jenkins"
-            }
-        }
+        //   TESTS
+         stage('Run Tests') {
+             steps {
+                 sh 'ng test'
+             }
+         }
 
-        stage('Deployment') {
-            steps {
-            // Lancer notre conteneur d'application
-            sh """
-            docker stop ${IMAGE_NAME} || true
-            docker rm ${IMAGE_NAME} || true
-            docker run -d --name ${IMAGE_NAME} -p 8081:8080 ${IMAGE_NAME}:${IMAGE_TAG}
-            """
-            }
-        }
+        //   DEPLOYMENT
+         stage('Generate Docker Image') {
+             steps {
+                //   Construire image docker
+                 sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -f ./jenkins/Dockerfile.jenkins ./jenkins"
+             }
+         }
+
+         stage('Deployment') {
+             steps {
+            //   Lancer notre conteneur d'application
+             sh """
+             docker stop ${IMAGE_NAME} || true
+             docker rm ${IMAGE_NAME} || true
+             docker run -d --name ${IMAGE_NAME} -p 8081:8080 ${IMAGE_NAME}:${IMAGE_TAG}
+             """
+             }
+         }
     }
 }
