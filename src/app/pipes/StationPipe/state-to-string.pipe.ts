@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { StationState } from '../../models/station-state';
 
 @Pipe({
   name: 'stateToString',

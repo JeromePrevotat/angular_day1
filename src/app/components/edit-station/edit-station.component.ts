@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { StationServiceService } from '../../services/station-service.service';
 import { Station } from '../../models/station';
-import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StationState } from '../../models/station-state';
 import { StationDeleteBtnComponent } from "../station-delete-btn/station-delete-btn.component";
@@ -9,13 +9,14 @@ import { StationDeleteBtnComponent } from "../station-delete-btn/station-delete-
 @Component({
   selector: 'app-edit-station',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterOutlet, StationDeleteBtnComponent],
+  imports: [ReactiveFormsModule, StationDeleteBtnComponent],
   templateUrl: './edit-station.component.html',
   styleUrls: ['./edit-station.component.css']
 })
 export class StationEditComponent implements OnInit {
   private stationService = inject(StationServiceService);
   private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
   stationEditForm: FormGroup;
   isSubmitted = false;
   isLoading = false;
@@ -95,14 +96,15 @@ export class StationEditComponent implements OnInit {
         this.stationService.editStation(this.stationId, newStation).subscribe({
           next: (response) => {
             console.log('Station edited successfully:', response);
+            this.isLoading = false;
+            this.stationEditForm.reset();
+            this.isSubmitted = false;
+            this.router.navigate(['/stations']);
           },
           error: (error) => {
             console.error('Error editing station:', error);
           }
         });
-        this.isLoading = false;
-        this.stationEditForm.reset();
-        this.isSubmitted = false;
       } else {
         console.error('Form is invalid:', this.stationEditForm.errors);
       }

@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+    
+    // tools {
+    //     maven 'mvn'
+    // }
+    
+    environment {
+        // ANGULAR_PATH = '/usr/lib/jvm/java-17-openjdk-amd64'
+        // PATH = "${ANGULAR_PATH}/bin:${env.PATH}"
+        IMAGE_NAME = 'angular-jenkins'
+        IMAGE_TAG = 'latest'
+    }
+    
+    stages {
+        stage('Checkout sur la branche master') {
+            steps {
+                git branch: 'master', url: 'https://github.com/JeromePrevotat/angular_day1.git' 
+            }
+        }
+
+        stage('Install dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Start server') {
+            steps {
+                sh 'ng serve'
+            }
+        }
+
+        stage('Generate Docker Image') {
+            steps {
+                // Construire image docker
+                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+            }
+        }
+
+        stage('Deployment') {
+            steps {
+            // Lancer notre conteneur d'application
+            sh """
+            docker stop ${IMAGE_NAME} || true
+            docker rm ${IMAGE_NAME} || true
+            docker run -d --name ${IMAGE_NAME} -p 8080:8080 ${IMAGE_NAME}:${IMAGE_NAME}
+            """
+            }
+        }
+    }
+}
