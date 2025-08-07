@@ -25,16 +25,10 @@ pipeline {
             }
         }
 
-        stage('Start server') {
-            steps {
-                sh 'ng serve'
-            }
-        }
-
         stage('Generate Docker Image') {
             steps {
                 // Construire image docker
-                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -f ./jenkins/Dockerfile.jenkins ./jenkins"
             }
         }
 
